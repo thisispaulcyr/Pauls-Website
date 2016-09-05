@@ -1,0 +1,298 @@
+/************************
+ * Page: Front
+ ************************/
+
+@import '../resources/variables';
+@import '../resources/mixins';
+
+body.front-page #main {
+
+    > .container,
+	> .animation-container > .container {
+		padding: initial;
+        background: initial;
+        box-shadow: initial;
+
+        @media (min-width: 1024px), print { padding-bottom: initial; }
+
+        @media (min-width: 1280px), print { padding: initial; }
+
+        @media (min-width: 2560px), print and (orientation: landscape) {
+            width: initial;
+            padding-right: initial;
+            padding-left: initial;
+        }
+	}
+
+    > .container > .container,
+	> .animation-container > .container > .container {
+		@include container;
+
+        @media print {
+			width: 100%;
+			max-width: 1168px;
+			padding: 3.5em 3em;
+		}
+	}
+    
+    .banner {
+        height: 20vw;
+        background: transparentize(map-get($colors, 'quartary'), 0.15);
+        color: #fff;
+        border-top: 1px solid transparentize(map-get($colors, 'quintary'), 0.15);
+        border-bottom: 1px solid transparentize(map-get($colors, 'quintary'), 0.15);
+        box-shadow: 0 0 0.5em 0.0625em map-get($colors, 'shadow');
+
+        @media (min-width: 560px), print { height: 7em; }
+
+        @media (min-width: 1280px), print {
+            max-width: none;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        h1 {
+            position: relative;
+            top: 50%;
+            margin: -5vw auto 0;
+            padding: 0 5vw;
+            vertical-align: middle;
+            font-size: 10vw;
+            font-weight: lighter;
+            line-height: 1;
+            text-shadow: 0.556vw 0.556vw 2px hsl(
+                map-get($hues, 'primary'), 95%, 11.9%
+            );
+
+            @media (min-width: 560px), print {
+                margin-top: -0.5em;
+                font-size: 350%;
+                text-shadow: 0.056em 0.056em 2px hsla(map-get($hues, 'primary'), 95%, 11.9%, 0.85);
+            }
+
+             @media (min-width: 1280px), print { box-sizing: border-box; }
+
+            @media (min-width: 1280px) {
+                max-width: 1280px;
+                padding-right: 64px;
+                padding-left: 64px;
+            }
+
+            @media (min-width: 2560px) and (orientation: landscape) { width: 66.667%; }
+
+            @media print {
+                width: 100%;
+                max-width: 1168px;
+                padding: 0 (7em/6);
+            }
+        }
+
+    }
+
+    h2 {
+        font-size: 8vw;
+        font-weight: 500;
+        text-align: center;
+
+        @media (min-width: 500px), print { font-size: 250%; }
+    }
+
+    .services {
+
+        .buttons {
+            @include flex((
+                display: flex,
+                justify-content: space-around,
+                flex-wrap: wrap
+            ));
+            width: 100%;
+            font-size: 160%;
+
+	        @media (min-width: 768px), print { font-size: 200%; }
+
+            button {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                height: 5em;
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+                background: transparent;
+                border: 0.0833em solid hsla(map-get($hues, 'primary'), 32%, 17.3%, 0.85);
+                box-shadow: 0 0 0.375em hsla(0,0%,20%,0.6);
+                overflow: hidden;
+
+                @media (min-width: 720px), print {
+                    width: 48%;
+                    height: 7em;
+	            }
+
+                @media (min-width: 1024px), print { font-size: 100%; }
+                
+                .title {
+                    position: relative;
+                    z-index: -1;
+                    display: inline-block;
+                    padding: 0.375em;
+                    border-radius: 0.25em;
+                    background: transparentize(map-get($colors, 'quintary'), 0.8);
+                    text-shadow: 0px 1px 0.111em #000;
+
+                    @media print {
+                        background: none;
+                        text-shadow: none;
+                    }
+                }
+
+                > .image {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    z-index: -2;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .web {
+                color: #fff;
+
+                .image {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    .plane {
+                        position: absolute;
+                        left: -50%;
+                        width: 200%;
+                        height: 200%;
+                        transform: perspective(7em) rotateX(30deg) translateY(-3.5em) translateZ(1.75em);
+                        $backgroundGradient: hsla(0, 0%, 100%, 0.2);
+                        $backgroundGradient2: transparentize($backgroundGradient, 0.15);
+                        background-color: hsl(0, 0%, 46.7%);
+                        background-image: radial-gradient(circle, transparent 40%, hsla(0, 0%, 0%, 0.3) 60%),
+                            linear-gradient($backgroundGradient2 2px, transparent 2px),
+                            linear-gradient(90deg, $backgroundGradient2 2px, transparent 2px),
+                            linear-gradient($backgroundGradient 1px, transparent 1px),
+                            linear-gradient(90deg, $backgroundGradient 1px, transparent 1px);
+                        background-size: 100% 200%, 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+                        background-position: 0 0, -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+                        @include transition(background-color 175ms ease);
+
+                        @media (min-width: 768px) { transform: perspective(7em) rotateX(30deg) translateY(-5.5em) translateZ(1.75em); }
+
+                        @media print { transform: translateY(-4em); }
+                    }
+                }
+
+                &:hover, &:focus, &:active {
+                    .image .plane { background-color: hsl(205.7, 73.6%, 46.7%); }
+                }
+            }
+
+            .it {
+                color: #fff;
+                
+                .overlay {
+                    position: absolute;
+                    background-color: hsl(0, 0%, 60%);
+                }
+                
+                &:hover, &:focus, &:active {
+                    > .image { background-color: hsl(0, 0%, 46.7%); }
+                }
+
+                > .image {
+                    background-color: hsl(0, 0%, 31.2%);
+                    @include transition(background-color 175ms ease);
+                    background-image: radial-gradient(ellipse farthest-corner, transparent 66.67%, hsla(0, 0%, 0%, 0.25) 100%);
+                
+                    .carousel {
+                        position: relative;
+                        z-index: -1;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 125%;
+
+                        @media print { display: none; }
+                        
+                        .item {
+                            width: 1.25em;
+                            height: 1.25em;
+                            padding: 0.1875em;
+                            border: 0.1em solid hsl(0, 0%, 90%);
+                            color: hsl(205.7, 63.6%, 36.7%);
+                            background-color: #fff;
+                            border-radius: 1em;
+                            transform-origin: 50% 50%;
+                            transition: 100ms;
+
+                            .icon {
+                                height: 100%;
+                            
+                                .image { width: 0.675em; }
+                            }
+                        }
+                    }
+                    
+                    .console {
+                        position: absolute;
+                        top: 6%;
+                        left: 2%;
+                        z-index: -2;
+                        width: 96%;
+                        height: 88%;
+                        font-size: 33.33%;
+                        text-align: left;
+                        overflow-y: scroll;
+                    
+                        .ruler {
+                            position: relative;
+                            
+                            > .text {
+                                visibility: hidden;
+                                position: absolute;
+                            }
+                        }
+                        
+                        > * span {
+                            @include transition(color 175ms ease);
+                        }
+
+                        .blink,
+                        .typed-cursor {
+                        -moz-animation: blink 1500ms infinite linear;
+                        -webkit-animation: blink 1500ms infinite linear;
+                        animation: blink 1500ms infinite linear;
+                        background-color: currentColor;
+                        }
+                        @-moz-keyframes blink {  
+                            0% { visibility: hidden; }
+                            50% { visibility: hidden; }
+                            100% { visibility: visible; }
+                        }
+
+                        @-webkit-keyframes blink {  
+                            0% { visibility: hidden; }
+                            50% { visibility: hidden; }
+                            100% { visibility: visible; }
+                        }
+
+                        @keyframes blink {  
+                            0% { visibility: hidden; }
+                            50% { visibility: hidden; }
+                            100% { visibility: visible; }
+                        }
+                    }
+                }
+            }
+
+            .it:not(:hover):not(:focus):not(:active) > .image .console > * span {
+                    color: hsla(0, 0%, 100%, 0.2) !important;
+            }
+        }
+    }
+}

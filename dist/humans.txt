@@ -1,0 +1,28 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+/* TEAM */
+	Developer & Designer: Paul Cyr
+	Contact: web [at] thisispaul.ca
+	LinkedIn: https://ca.linkedin.com/in/paulcyr1/
+	Twitter: @thisispaulc
+	From: Kitchener, Ontario, Canada
+
+/* SITE */
+	Last update: 2016/01/07
+	Standards: HTML5, CSS3, Javascript
+	/* Components */
+		jQuery: https://jquery.com/
+		Bootstrap: https://getbootstrap.com/
+		Cloud 9 Carousel: https://github.com/specious/cloud9carousel/
+		jQuery Validation: http://jqueryvalidation.org/
+	/* Images */
+		Background: http://www.freeimages.com/photo/abstract-polygonal-low-poly-photos-texture-3-636190
+		Picol (certain iconography): http://picol.org/
+		LinkedIn: https://brand.linkedin.com/visual-identity/logo
+		Twitter: https://about.twitter.com/company/brand-assets
+	/* Software */
+		Sublime Text 2: https://www.sublimetext.com/
+		WinSCP: https://winscp.net/
+		Adobe Illustrator
+		Adobe Photoshop

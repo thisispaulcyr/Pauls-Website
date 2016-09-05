@@ -1,0 +1,134 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="skills" x="0px" y="0px" viewBox="0 0 914 828" aria-role="presentation" aria-describedby="skill-chart-description" style="font-family: 'Roboto', sans-serif; font-size: 18pt;">
+	<?xml-stylesheet type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,900,900italic,300italic,300,400italic,500,500italic,700,700italic|Lora:400,400italic,700,700italic&amp;subset=latin,latin-ext" ?>
+	<style>
+		<![CDATA[
+		text {
+			fill:#FFF;
+			font-weight: normal;
+		}
+		rect { mix-blend-mode: soft-light; }
+		.subgroups rect {
+			mix-blend-mode: normal;
+			opacity: 0.65;
+		}
+		.svg-heading, .svg-subheading { font-weight: lighter; }
+		.svg-subheading { font-size: 16pt; }
+		.svg-note {
+			font-size: 14pt;
+			font-weight: lighter;
+		}
+		.svg-tooltip { font-size: 0.7em; }
+		.svg-tooltip rect { mix-blend-mode: unset; }
+		.svg-tooltip text { font-weight: lighter; }
+		]]>
+	</style>
+	<rect class="databases" width="38.1em" height="7.5em" rx="0.25em" ry="0.25em" transform="translate(0 250)" fill="hsl(340.6, 50%, 50%)" />
+	<g class="databases" transform="translate(0 250)">
+		<g transform="translate(26 46)">
+			<text>
+				<tspan class="svg-heading">Databases</tspan>
+				<tspan x="0" dy="1.6em">Transact-SQL <tspan class="svg-note" dy="-0.125em">(MS/Sybase)</tspan></tspan>
+				<tspan x="0" dy="1.425em">PostgreSQL</tspan>
+				<tspan x="0" dy="1.3em">MySQL</tspan>
+			</text>
+		</g>
+	</g>
+	<rect class="languages" width="11.7em" height="15em" rx="0.25em" ry="0.25em" transform="translate(306 0)" fill="hsl(228.1, 75%, 62.5%)" />
+	<g class="languages" transform="translate(306 0)">
+		<g transform="translate(26 42)">
+			<text class="svg-heading">
+				<tspan>Programming and</tspan>
+				<tspan x="0" dy="1.2em">Web Languages</tspan>
+			</text>
+			<text>
+				<tspan x="0" dy="2.9em">PHP</tspan>
+				<tspan x="0" dy="1.3em">C</tspan>
+				<tspan x="0" dy="1.3em">Java</tspan>
+				<tspan x="0" dy="1.3em">
+					<tspan>HTML5</tspan>
+					<tspan x="0" dy="1em">
+						<tspan class="svg-note" style="fill:#FFFFFF;  font-size:14;">+ </tspan>
+						<tspan id="wai" class="svg-note">WAI-ARIA</tspan>
+					</tspan>
+				</tspan>
+				<tspan x="0" y="12.15em">CakePHP</tspan>
+			</text>
+			<line x1="0.5em" y1="7.9em" x2="3.85em" y2="7.9em" stroke="#fff" stroke-width="0.04166em" stroke-dasharray="1,2" />
+			<text transform="translate(118)">
+				<tspan x="0" dy="2.9em">JavaScript</tspan>
+				<tspan x="0" dy="1.3em">jQuery</tspan>
+				<tspan x="0" dy="1.3em">CSS3</tspan>
+				<tspan x="0" dy="1.3em">XML</tspan>
+			</text>
+		</g>
+	</g>
+	<rect class="systems" width="38.1em" height="15.8em" rx="0.25em" ry="0.25em" transform="translate(0 450)" fill="hsl(273.1, 75%, 62.5%)" />
+	<g class="systems" transform="translate(0 450)">
+		<g transform="translate(26 46)">
+			<text class="svg-heading">Systems, Networking, and Telephony</text>
+			<g transform="translate(0 23)" class="subgroups">
+				<g>
+					<rect width="17.5em" height="5.4em" rx="0.25em" ry="0.25em" fill="hsl(273.1, 50%, 68.75%)"  />
+					<text transform="translate(19.5 37.375)">
+						<tspan class="svg-subheading">Operating Systems</tspan>
+						<tspan x="0" dy="1.5em">Windows Server 2012 <tspan class="svg-note" dy="-0.12em">+ client editions</tspan></tspan>
+						<tspan x="0" dy="1.495em">OS X</tspan>
+						<tspan dx="2em">CentOS 7</tspan>
+						<tspan dx="2em">Raspbian</tspan>
+					</text>
+				</g>
+				<g transform="translate(444 0)">
+					<rect width="17.5em" height="5.4em" rx="0.25em" ry="0.25em" fill="hsl(273.1, 0%, 75%)" />
+					<text transform="translate(19.5 37.375)">
+						<tspan class="svg-subheading">PBXs</tspan>
+						<tspan x="0" dy="1.5em">Asterisk</tspan>
+						<tspan dx="1.5em">FreePBX</tspan>
+						<tspan x="0" dy="1.375em">IP phone provisioning</tspan>
+					</text>
+				</g>
+				<g transform="translate(0 152)">
+					<rect width="36em" height="5.6em" rx="0.25em" ry="0.25em" fill="hsl(273.1, 0%, 62.5%)" />
+					<text transform="translate(19.5 37.375)">
+						<tspan class="svg-subheading">OSI Components and IEEE Protocols</tspan>
+						<tspan x="0" dy="1.5em">802.1 <tspan class="svg-note" dy="-0.125em">(LAN Management)</tspan></tspan>
+						<tspan dx="1.3em" dy="0.125em">802.3 <tspan class="svg-note" dy="-0.125em">(Ethernet)</tspan></tspan>
+						<tspan dx="1.3em" dy="0.125em">802.11 <tspan class="svg-note" dy="-0.125em">(Wireless LAN)</tspan></tspan>
+						<tspan dx="1.3em" dy="0.125em">IPv6</tspan>
+						<tspan dx="1.3em">SSH</tspan>
+						<tspan x="0" dy="1.5em">VPN</tspan>
+						<tspan dx="0.95em">SIP/VoIP</tspan>
+						<tspan dx="0.951em">RADIUS</tspan>
+						<tspan dx="0.95em">DNS</tspan>
+						<tspan dx="0.95em">DHCP</tspan>
+						<tspan dx="0.95em">SMTP</tspan>
+						<tspan dx="0.95em">IMAP</tspan>
+						<tspan dx="0.95em">POP3</tspan>
+						<tspan dx="0.95em">Telnet</tspan>
+					</text>
+				</g>
+			</g>
+		</g>
+	</g>
+	<rect class="cms" width="11.6em" height="15em" rx="0.25em" ry="0.25em" transform="translate(612 0)" fill="hsl(160.6, 75%, 50%)" />
+	<g class="cms" transform="translate(612 0)">
+		<g transform="translate(26 42)">
+			<text class="svg-heading">
+				<tspan>Content Management</tspan>
+				<tspan x="0" dy="1.2em">and Publishing</tspan>
+			</text>
+			<text>
+				<tspan x="0" dy="2.9em">WordPress</tspan>
+				<tspan x="0" dy="1.3em">Illustrator</tspan>
+				<tspan x="0" dy="1.3em">Photoshop</tspan>
+				<tspan x="0" dy="1.3em">Microsoft SharePoint</tspan>
+				<tspan x="0" y="12.15em">MS Access</tspan>
+			</text>
+		</g>
+	</g>
+	<g id="wai-tooltip" class="svg-tooltip" transform="translate(340 240)" visibility="hidden" fill="hsl(273.1, 100%, 23.9%)">
+		<rect width="29.5em" height="1.4375em" rx="0.125em" ry="0.125em" />
+		<text x="0.3125em" y="1.0875em">Web Accessibility Initiative – Accessible Rich Internet Applications</text>
+		<set attributeName="visibility" from="hidden" to="visible" begin="wai.mouseover" end="wai.mouseout"/>
+	</g>
+</svg>

@@ -1,0 +1,225 @@
+/************************
+ * Forms
+ ************************/
+
+form {
+	
+	&:not(:first-child) { margin-top: 1.25em; }
+
+	@media (min-width: 520px), print {
+		.width-half:not(.email) { width: 48%; }
+	}
+
+	fieldset {
+
+		&:not(:first-of-type) legend { padding-top: 1.25em; }
+
+		&.tel .webkit-fix {
+			display: -webkit-flex;
+			display: flex;
+		}
+		&.submit .alert { margin-top: 1em; }
+
+		@media (min-width: 520px), print {
+			&.name {
+				.webkit-fix {
+					display: -webkit-flex;
+					display: flex;
+					flex-wrap: wrap;
+				}
+			}
+		}
+
+		@media (min-width: 620px), print {
+			&.address {
+				
+				.webkit-fix {
+					display: -webkit-flex;
+					display: flex;
+				}
+				
+				.city {
+					width: 100%;
+					margin-right: 4%;
+				}
+			}
+		}
+
+		legend {
+			padding-top: 0.5em;
+			margin-bottom: 0.25em;
+		}
+
+		.form-group {
+			margin-top: 1em;
+
+			&.password, &.name-first, &.name-last, &.email, &.city { max-width: 18em; }
+
+			&.tel, &.tel_ext, &.prov, &.pcode { display: inline-block; }
+
+			&.tel {
+				width: 14em;
+				margin-right: 4%;
+			}
+			
+			&.tel-ext { width: 4.5em; }
+
+			@media (min-width: 768px), print {
+				&.tel, &.tel_ext { display: block; }
+			}
+
+			&.street-address {
+				max-width: 30em;
+				
+				textarea {
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
+			}
+
+			&.prov {
+				width: auto;
+				margin-right: 2em;
+				
+				.form-control { width: 5em; }
+			}
+
+			&.pcode .form-control { width: 7.5em; }
+
+			@media (min-width: 855px), print {
+				&.address {
+					.webkit-fix { flex-wrap: inherit; }
+					.city, .prov { margin-right: 4%; }
+				}
+			}
+
+			&.subject, &.message { max-width: 38em; }
+
+			&.update-opt-in {
+				margin-top: 1.5em;
+				margin-bottom: 0.5em;
+			}
+
+			&.captcha {
+				margin-top: 0.75em;
+				text-align: center;
+				line-height: 1;
+
+				@media (min-width: 1102px), print { margin: 0.5em 0 0; }
+
+				.recaptcha {
+					display: inline-block;
+					
+					@media (min-width: 1102px), print { margin: 0 auto; }
+				}
+				
+				@media (min-width: 720px), print { 
+					.g-recaptcha { width: 19em; }
+				}
+			}
+
+			@media (min-width: 520px), print {
+				&.name-first, &.prov { margin-right: 4%; }
+			}
+
+			@media print { page-break-inside: avoid; }
+		}
+
+		@media (min-width: 702px), print {
+
+			.email-tel {
+
+				> .webkit-fix {
+					display: -webkit-flex;
+					display: flex;
+
+					@media (min-width: 768px), print {
+						flex-wrap: wrap;
+						justify-content: flex-start;
+					}
+				}
+
+				fieldset.tel { width: 48%; }
+					
+				.form-group.email {
+					width: 48%;
+					margin-right: 4%;
+				}
+			}
+		}
+		
+	}
+
+	input[type="submit"] {
+		display: block;
+		width: 100%;
+		max-width: 22em;
+		margin: 1.5em auto 0;
+		padding: 0.5em 0.75em;
+	}
+
+	@media (min-width: 1024px), print {
+		.checkbox, .radio {
+			margin-right: 0.5em;
+			margin-left: 0.5em;
+		}
+	}
+
+	.control-label {
+		white-space: pre;
+	}
+
+	.help-block.has-error, .form-control { max-width: 870px; }
+
+	.help-block.has-error {
+		margin-top: 0.25em;
+		padding: 0.25em 0.6em;
+		color: #fff;
+		background-color: map-get($colors, 'error');
+		border-radius: 0.25em;
+		font-size: 87.5%;
+		font-weight: 300;
+		font-style: oblique;
+	}
+
+	.form-control {
+		width: 100%;
+    	box-sizing: border-box;
+		margin-top: 0.25em;
+		margin-bottom: 0;
+		padding: (8em/16) (12em/16) (6em/16);
+		font-size: 100%;
+
+		&:not(textarea) {
+			height: 2.5em;
+		}
+	}
+
+	.note {
+		font-size: 81.25%;
+		font-style: oblique;
+	}
+
+	p:first-child.note { margin-top: -1em; }
+
+	.sidebar {
+		max-width: 38em;
+		
+		@media (min-width: 1102px) {
+			position: absolute;
+			left: 30%;
+			margin-bottom: 0.5em;
+			margin-left: 23.5em;
+			bottom: 0;
+			padding: 1em;
+			background: hsla(0, 0%, 100%, 0.25);
+			border-radius: 0.25em;
+			border: 0.0625em solid hsla(0, 0%, 25%, 0.25);
+			box-shadow: 0 0 0.125em 0.125em hsla(0, 0%, 66.7%, 0.25);
+
+			fieldset .form-group.update-opt-in { margin-top: 0.25em; }
+
+			input[type="submit"] { margin-top: 1em; }
+		}
+	}
+}
