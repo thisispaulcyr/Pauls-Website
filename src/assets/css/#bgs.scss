@@ -1,0 +1,14 @@
+/************************
+ * #bgs
+ ************************/
+
+#bgs {
+
+	position: fixed;
+	z-index: -999;
+	width: 100%;
+
+	@media print { display: none; }
+	
+	.bg { width: 100%; }
+}

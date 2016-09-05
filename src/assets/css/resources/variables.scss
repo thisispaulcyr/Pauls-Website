@@ -1,0 +1,20 @@
+/************************
+ * resources/variables
+ ************************/
+
+$imagePath: '../img/';
+$hues: (primary: 272, accent: 348);
+$colors: (
+	primary: hsl(map-get($hues, 'primary'), 63%, 45.1%),
+	secondary: hsl(map-get($hues, 'primary'), 63%, 14.7%),
+	tertiary: hsl(map-get($hues, 'primary'), 73%, 39%),
+	quartary: hsl(map-get($hues, 'primary'), 100%, 24%),
+	quintary: hsl(map-get($hues, 'primary'), 100%, 18%),
+	accent: (
+		primary: hsl(map-get($hues, 'accent'), 100%, 50%),
+		secondary: hsl(map-get($hues, 'accent'), 94%, 37.9%),
+		tertiary: hsl(map-get($hues, 'accent'), 100%, 74.3%),
+	),
+	error: hsl(0, 80%, 57%),
+	shadow: hsla(0, 0%, 0%, 0.4)
+);
