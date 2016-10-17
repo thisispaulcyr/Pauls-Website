@@ -75,7 +75,7 @@ function imageGallery($images, $relPath = null) {
 	foreach ($images as $filename => $imageOptions) {
 		$attributes = '';
 		if (isset($imageOptions) && array_key_exists('attributes', $imageOptions) && is_array($imageOptions['attributes'])) {
-			$imageOptions['attributes']['class'] = $imageOptions['attributes']['class'] ? $imageOptions['attributes'] . ' thumbnail' : 'thumbnail';
+			$imageOptions['attributes']['class'] = !empty($imageOptions['attributes']['class']) ? $imageOptions['attributes'] . ' thumbnail' : 'thumbnail';
 			foreach ($imageOptions['attributes'] as $k => $v) $attributes .= ' ' . htmlspecialchars($k) . '="' . htmlspecialchars($v) . '"';
 		}
 		$imageOptions['attributes'] = null;

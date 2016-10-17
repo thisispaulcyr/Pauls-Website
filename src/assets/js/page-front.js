@@ -11,19 +11,15 @@ var i=0;
     tip.page.create('front', function() {$(window).off('resize.typedIT');});
 
     tip.page.front.css = new tip.PageCSS();
-
-    tip.page.front.carousel = new tip.Carousel(
-        '#carousel-it',
-        { autoPlay: 1, autoPlayDelay: 0, speed: 7000, farScale: 0.75 }
-    );
     
     // Console typing for IT button
     tip.page.front.typing = function() {
 
+        var selector = '#console-it';
+
         if(typeof $(selector).data('typed') === 'object') return;
 
-        var selector = '#console-it',
-            execTimerTriggered = false,
+        var execTimerTriggered = false,
             typedSettings = {
                 showCursor: true,
                 cursorChar: "&ensp;",
@@ -55,17 +51,17 @@ var i=0;
             $('.typed-cursor', selector).remove();
             $('.services.cmd-show .text', selector).append('<span class="typed-cursor">&ensp;</span>');
             $('.services.cmd-show', selector).css('display', '');
-            $(selector).closest('button').on('mouseover.console-it' , function() {
-                $(selector).closest('button').off('focus.console-it');
-                $(selector).closest('button').off('mouseover.console-it');
+            $(selector).closest('.button').on('mouseover.console-it' , function() {
+                $(selector).closest('.button').off('focus.console-it');
+                $(selector).closest('.button').off('mouseover.console-it');
                 if (!listPrint) {
                     listPrint = true;
                     _4_servicesShow();
                 }
             });
-            $(selector).closest('button').on('focus.console-it' , function() {
-                $(selector).closest('button').off('focus.console-it');
-                $(selector).closest('button').off('mouseover.console-it');
+            $(selector).closest('.button').on('focus.console-it' , function() {
+                $(selector).closest('.button').off('focus.console-it');
+                $(selector).closest('.button').off('mouseover.console-it');
                 if (!listPrint) {
                     listPrint = true;
                     _4_servicesShow();
@@ -97,8 +93,8 @@ var i=0;
             $('.end-prompt', selector).css('display', '');
         }
         function exec() {
+            var child = $(selector);
             (function consoleSize() {
-                var child = $(selector);
                 child.css('width', '');
                 child.css('padding-right', '');
                 var rulerWidth = $('.ruler', child).width()
@@ -132,6 +128,7 @@ var i=0;
                 }
                 $(selector).css('font-size', text.css('font-size'));
             })();
+            child.css('overflow-y', 'auto');
         };
 
         (function init() {
@@ -163,7 +160,5 @@ var i=0;
             );
         });
     }();
-
-    tip.page.front.carousel.init();
 
 })();

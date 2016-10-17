@@ -156,6 +156,7 @@ tip.Form = function(id, options) {
 			},
 			error: {
 				GENERAL: 'Please contact me at <a href="mailto:web@thisispaul.ca" target="_blank">web@thisispaul.ca</a>.',
+				TIMEOUT: 'There was a internal technical error. It probably doesn\'t have anything to do with your submission.',
 				UNKNOWN: 'An unknown error occurred. It probably doesn\'t have anything to do with your submission and is likely just a technical issue.',
 				authentication: { GENERAL: 'The username or password is incorrect.'},
 				form: {
@@ -237,27 +238,35 @@ tip.Form = function(id, options) {
 
 				$('.alert', self.id).addClass('alert-danger');
 
-				try {
-					errorCode = $.parseJSON(jqXHR['responseText'])['details']['code'];
-					errorMessage =
-					$.parseJSON(jqXHR['responseText'])['details']['code'].split('.').reduce(
-						function(prev, curr) {
-							if (prev.hasOwnProperty(curr)) { return prev[curr]; }
-							else { return formMessages.error.UNKNOWN; }
-						},
-						formMessages
-					);
-					responseMessage = $.parseJSON(jqXHR['responseText'])['message'];
+				if (textStatus == 'timeout') {
+					errorCode = 'error.form.TIMEOUT';
+					errorMessage = formMessages.error.TIMEOUT;
+					responseMessage = 'Timeout.';
+				} else {
+					try {
+						errorCode = $.parseJSON(jqXHR['responseText'])['details']['code'];
+						errorMessage =
+						$.parseJSON(jqXHR['responseText'])['details']['code'].split('.').reduce(
+							function(prev, curr) {
+								if (prev.hasOwnProperty(curr)) { return prev[curr]; }
+								else { return formMessages.error.UNKNOWN; }
+							},
+							formMessages
+						);
+						responseMessage = $.parseJSON(jqXHR['responseText'])['message'];
+					}
+					catch(e) {
+						errorCode = null;
+						errorMessage = formMessages.error.UNKNOWN;
+						responseMessage = 'Unknown error.';
+					}
 				}
-				catch(e) {
-					errorCode = null;
-					errorMessage = formMessages.error.UNKNOWN;
-					responseMessage = 'Unknown error.';
-				}
+
 				if (
 					errorMessage == formMessages.error.UNKNOWN
 					|| [
 						'error.form.EMAIL',
+						'email.form.TIMEOUT',
 						'error.form.db.CONNECTION',
 						'error.form.db.INSERT',
 						'error.form.type.NOTPROVIDED',
@@ -342,7 +351,7 @@ tip.Lightbox = function(page, options) {
 	// Initialize
 	var i=0;
 	if (typeof $.fn.lightbox !== 'function') {
-		$.getScript(SITE_ROOT + 'assets/js/jquery.lightbox.min.js');
+		$.getScript(SITE_ROOT + 'assets/js/lightbox.min.js');
 		function init() {
 			if (typeof $.fn.lightbox !== 'function') {
 				i++;
@@ -563,11 +572,9 @@ tip.ajax = {
 
 		url = typeof linkObject == 'string' ? linkObject : $(linkObject).attr('href');
 
-		$targetElement =
-			typeof linkObject == 'string'
-			|| $(linkObject).parents('#main').length == 0
+		$targetElement = typeof linkObject == 'string' || $(linkObject).parents('#main').length == 0 || !$(linkObject).closest('div').hasClass('container')
 			? $('#main')
-			: $(linkObject).closest('div').attr('class','container').parent();
+			: $(linkObject).closest('div').parent();
 
 		overlayNav = ('.overlay', $targetElement).first();
 
@@ -1020,20 +1027,8 @@ tip.menusInit = function() {
 }
 
 tip.msie = function() {
-	if ($.inArray(tip.browser.name, ['MSIE', 'Edge']) != -1) {
+	if ($.inArray(tip.browser.name, ['MSIE', 'Edge']) != -1) $('html').addClass(tip.browser.name.toLowerCase());
 
-		$('html').addClass(tip.browser.name.toLowerCase());
-
-		if ($('body').hasClass('front-page')) {
-			(function setSpeed() {
-				if ($('#carousel-it') && typeof $('#carousel-it').data('carousel') == 'object') {
-					$('#carousel-it').data('carousel').speed = 0;
-				} else {
-					window.setTimeout(setSpeed, $.fx.interval);
-				}
-			})();
-		}
-	}
 	if ($('html.ie-old').length && !Cookies.get('ie-warn-close')) {
 		var alert, string;
 		switch (tip.oS) {

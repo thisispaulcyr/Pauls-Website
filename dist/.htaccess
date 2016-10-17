@@ -11,4 +11,4 @@ RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule .* https://%1%{REQUEST_URI} [R=301,L]
 
 # Rewrite all to root index.php
-RewriteRule . index.php [L]
+RewriteRule ^[^\.].* index.php [L]

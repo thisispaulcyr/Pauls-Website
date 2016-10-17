@@ -23,12 +23,12 @@ var i=0;
 
     // Add captcha
     (tip.page.contact.form.captcha = function() {
-
+        
         if(typeof grecaptcha == 'object') {
             // Timeout to deal with reCaptcha bug with async reloading
             setTimeout(function() { grecaptcha.render('g-recaptcha', {'sitekey' : tip.page.contact.form.options.captchaKey}) }, 1000);
         }
-        else if (window.location.href == SITE_ROOT + 'contact') {
+        else if (window.location.href.replace(new RegExp('^' + window.location.protocol), '') == SITE_ROOT + 'contact') {
             setTimeout(function() { tip.page.contact.form.captcha(); }, 100);
         }
     })();

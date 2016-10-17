@@ -1,6 +1,9 @@
 "use strict";
 
 (function($, document, window) {
+
+	return;
+	
 	// Don't do anything if the lightbox already exists.
 	if ($[lightbox]) return;
 
@@ -404,12 +407,6 @@
 	// Add the lightbox elements when the DOM loads
 	function addToDOM() {
 		if (!$container) {
-			var css = document.createElement('link');
-
-			$(css).attr({
-				rel: 'stylesheet',
-				href: SITE_ROOT + 'assets/css/jquery.lightbox.min.css'
-			});
 
 			init = false;
 
@@ -469,7 +466,7 @@
 		}
 		if (document.body && !$container.parent().length) {
 			var parent = $('#main').length == 0 ? $(document.body) : $('#main');
-			parent.append($root.append(css, $overlay, $container, $loadingBay));
+			parent.append($root.append($overlay, $container, $loadingBay));
 		}
 	}
 
