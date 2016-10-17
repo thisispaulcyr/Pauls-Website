@@ -16,42 +16,14 @@ $this->titleSet('Hello, this is Paul.', true);
     </h2>
     <nav class="services">
         <div class="buttons">
-            <button class="web">
+            <a class="button web" href="<?php echo SITE_ROOT_URL . _('services'); ?>">
                 <div class="image">
                     <div class="plane" aria-hidden="true"></div>
                 </div>
                 <div class="title">Website Design</div>
-            </button>
-            <button class="it">
+            </a>
+            <a class="button it" href="<?php echo SITE_ROOT_URL . _('services'); ?>">
                 <div class="image" aria-hidden="true">
-                    <div class="overlay"></div>
-                    <div id="carousel-it" class="carousel icon-type-page-front icon-color-270e3d icon-size-64">
-                        <div class="item cloud9-item">
-                            <div class="icon server">
-                                <div class="image"></div>
-                            </div>
-                        </div>
-                        <div class="item cloud9-item">
-                            <div class="icon phone">
-                                <div class="image"></div>
-                            </div>
-                        </div>
-                        <div class="item cloud9-item">
-                            <div class="icon printer">
-                                <div class="image"></div>
-                            </div>
-                        </div>
-                        <div class="item cloud9-item">
-                            <div class="icon computer">
-                                <div class="image"></div>
-                            </div>
-                        </div>
-                        <div class="item cloud9-item">
-                            <div class="icon cloud">
-                                <div class="image"></div>
-                            </div>
-                        </div>
-                    </div>
                     <samp id="console-it" class="console">
                         <div class="ruler">
                             <span class="text">
@@ -70,7 +42,7 @@ $this->titleSet('Hello, this is Paul.', true);
                     </samp>
                 </div>
                 <div class="title">Small Business IT</div>
-            </button>
+            </a>
         </div>
     </nav>
     <br />

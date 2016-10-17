@@ -21,7 +21,7 @@ class Post {
 		if (in_array($_POST['form'], $acceptedForms)) {
 			$submission = $_POST;
 			$submission['ip'] = $_SERVER['REMOTE_ADDR'];
-			$submission['ip_http_x_forwarded_for'] = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
+			$submission['ip_http_x_forwarded_for'] = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? substr($_SERVER['HTTP_X_FORWARDED_FOR'], 191) : null;
 		}
 		else {
 			$this->response('Form type not recognized.', ['http_response_code' => 400, 'code' => 'error.form.type.NOTRECOGNIZED']);
@@ -123,11 +123,10 @@ class Post {
 				case 'tel-ext':
 					$fields[$field] = (int) $value;
 					break;
-				case 'update-opt-in':
-					$fields[$field] = in_array($value, [true, 'true', 1, '1', 'on', 0b1], true) ? true : false;
-					break;
 			}
 		}
+		$fields['update-opt-in'] = !empty($fields['update-opt-in']) && in_array($fields['update-opt-in'], [true, 'true', 1, '1', 'on', 0b1], true)
+			? true : false;
 		return $fields;
 	}
 
@@ -159,31 +158,52 @@ class Post {
 	}
 
 	private function send(array $fields, array $data) {
+
 		$preparedResult = $this->prepare($data);
 		$defaultData = ['ip' => $preparedResult['ip'], 'ip_http_x_forwarded_for' => $preparedResult['ip_http_x_forwarded_for']];
 		$data_us = [];
 
 		foreach($fields as $field) {
 			$key = strtolower(preg_replace('/\-/','_', $field));
-			$data_us[$key] = $preparedResult[$field];
+			$data_us[$key] = isset($preparedResult[$field]) ? $preparedResult[$field] : null;
 		}
+		
 		$preparedData = array_merge($defaultData, $data_us);
 
-		$sql = new SQL;
-		if(is_object($sql)) {
-			$insert = $sql->insert('submissions', $preparedData);
-			if($insert['succeeded'] === true) {
-				require_once(ABSPATH . 'includes/Email.php');
-				$email = Email::sendEmail($preparedData);
-				if($email) {
-					$this->response(200);
+		try {
+			$sql = new SQL();
+
+			try {
+				$insert = $sql->insert('submissions', $preparedData);
+				if($insert['succeeded'] === true) {
+					require_once(ABSPATH . 'includes/Email.php');
+					if (!empty($preparedData['name_last']) || !empty($preparedData['name_first'])) {
+
+						if (!empty($preparedData['name_last']))
+							$name = $preparedData['name_last'];
+
+						if (!empty($preparedData['name_first']))
+							$name = empty($preparedData['name_last'])
+								? $preparedData['name_first']
+								: $name . ', ' . $preparedData['name_first'];
+					}
+					$preparedData['from'] = ['name' => $name, 'address' => $preparedData['email']];
+					unset($preparedData['name_first'], $preparedData['name_last'], $preparedData['email']);
+					$email = Email::sendEmail($preparedData);
+					if($email) {
+						$this->response(200);
+					} else {
+						$this->response('Email error.', ['code' => 'error.form.EMAIL']);
+					}
 				} else {
-					$this->response('Email error.', ['code' => 'error.form.EMAIL']);
+					$this->response('DB insert error.', ['code' => 'error.form.db.INSERT', 'details' => $insert['details']]);
 				}
-			} else {
-				$this->response('DB insert error.', ['code' => 'error.form.db.INSERT', 'details' => $insert['details']]);
+			} catch (\Exception $e) {
+				error_log($e);
+				$this->response('DB insert error.', ['code' => 'error.form.db.INSERT', 'details' => $e]);
 			}
-		} else {
+		} catch (\Exception $e) {
+			error_log($e);
 			$this->response('DB connection error.', ['code' => 'error.form.db.CONNECTION']);
 		}
 	}

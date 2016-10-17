@@ -100,7 +100,12 @@ Class Get {
 
 		if($_SERVER['REQUEST_METHOD'] == 'GET') {
 			if (self::$fileExists && self::$requestType == 'asset-file') echo $contents;
-			elseif (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && strtolower($_SERVER['HTTP_X_REQUEST_TYPE']) == 'ajax') {
+			elseif (
+				isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+				&& strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+				&& isset($_SERVER['HTTP_X_REQUEST_TYPE'])
+				&& strtolower($_SERVER['HTTP_X_REQUEST_TYPE']) == 'ajax'
+			) {
 				header('Content-Type: application/json');
 				$response = [
 					'contents' => $contents,

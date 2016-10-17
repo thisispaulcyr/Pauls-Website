@@ -87,11 +87,9 @@ Class Page extends Main {
         if($this->page_title_override) {
             return $this->page_title;
         } else {
-            if($is_home || !isset($this->page_title)) {
-                return Config::SITE_NAME;
-            } else {
-                return Config::SITE_NAME . ' | ' . $this->page_title;
-            }
+            return isset($this->page_title)
+                ? Config::SITE_NAME . ' | ' . $this->page_title
+                : Config::SITE_NAME;
         }
     }
 
